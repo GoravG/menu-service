@@ -1,0 +1,24 @@
+info:
+  name: Create Menu
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8080/menu
+  body:
+    type: json
+    data: |-
+      {
+        "name": "another_one",
+        "description": "another boring item",
+        "category": "other",
+        "available": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
