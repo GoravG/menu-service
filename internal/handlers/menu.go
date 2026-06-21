@@ -65,3 +65,23 @@ func (h *Handler) PostTag(w http.ResponseWriter, r *http.Request) {
 	}
 	utils.CreateResponse(w, http.StatusCreated, "Tag created successfully")
 }
+
+func (h *Handler) GetMenuPrice(w http.ResponseWriter, r *http.Request) {
+	menuPrices := h.service.GetMenuPrices()
+	utils.CreateResponse(w, http.StatusOK, menuPrices)
+}
+
+func (h *Handler) PostMenuPrice(w http.ResponseWriter, r *http.Request) {
+	var menuPrice models.MenuPriceRequest
+	err := utils.ParseRequestBody(r, &menuPrice)
+	if err != nil {
+		utils.CreateResponse(w, http.StatusBadRequest, "Invalid request body")
+		return
+	}
+	err = h.service.CreateMenuPrice(menuPrice)
+	if err != nil {
+		utils.CreateResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	utils.CreateResponse(w, http.StatusCreated, "Menu price created successfully")
+}

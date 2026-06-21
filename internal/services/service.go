@@ -10,6 +10,7 @@ type Service struct {
 	categories *repository.CategoryRepository
 	menus      *repository.MenuRepository
 	tags       *repository.TagRepository
+	menuPrices *repository.MenuPriceRepository
 }
 
 func New(db *sql.DB) (*Service, error) {
@@ -28,10 +29,16 @@ func New(db *sql.DB) (*Service, error) {
 		return nil, err
 	}
 
+	menuPrices, err := repository.NewMenuPriceRepository(db)
+	if err != nil {
+		return nil, err
+	}
+
 	return &Service{
 		categories: categories,
 		menus:      menus,
 		tags:       tags,
+		menuPrices: menuPrices,
 	}, nil
 }
 

@@ -1,14 +1,15 @@
 package models
 
 type MenuPrice struct {
-	ID          int    `json:"id"`
-	PriceListID int    `json:"price_list_id"`
-	PortionSize string `json:"portion_size"`
-	MenuItemID  int    `json:"menu_item_id"`
+	Price        float64 `json:"price"`
+	Currency     string  `json:"currency"`
+	PortionSize  string  `json:"portion_size"`
+	MenuItemName string  `json:"menu_item_name"`
 }
 
 type MenuPriceRequest struct {
-	PriceListID int    `json:"price_list_id"`
-	PortionSize string `json:"portion_size"`
-	MenuItemID  int    `json:"menu_item_id"`
+	Price        float64 `json:"price"`
+	Currency     string  `json:"currency"`
+	PortionSize  string  `json:"portion_size"`
+	MenuItemName string  `json:"menu_item_name"`
 }

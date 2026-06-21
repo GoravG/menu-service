@@ -1,0 +1,24 @@
+info:
+  name: Create Menu Prices
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{base_url}}/menu-price"
+  body:
+    type: json
+    data: |-
+      {
+        "price": 200,
+        "currency": "INR",
+        "portion_size": "Full",
+        "menu_item_name": "chole bhature"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
