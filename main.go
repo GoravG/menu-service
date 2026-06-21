@@ -4,17 +4,31 @@ import (
 	"fmt"
 	"net/http"
 	"restaurant-menu-api/internal/config"
+	"restaurant-menu-api/internal/db"
 	"restaurant-menu-api/internal/handlers"
 	"restaurant-menu-api/internal/logger"
+	"restaurant-menu-api/internal/middleware"
+	"restaurant-menu-api/internal/services"
 )
 
 func main() {
+	service, err := services.New(db.GetDB())
+	if err != nil {
+		logger.Error("Error initializing services: " + err.Error())
+		panic(err)
+	}
+
+	handler := handlers.New(service)
+
 	router := http.NewServeMux()
-	router.HandleFunc("/health", handlers.HealthCheck)
-	router.HandleFunc("GET /menu", handlers.GetMenu)
-	router.HandleFunc("POST /menu", handlers.PostMenu)
-	router.HandleFunc("GET /categories", handlers.GetCategories)
-	router.HandleFunc("POST /categories", handlers.PostCategory)
+	router.Handle("/", middleware.Recover(http.HandlerFunc(handlers.HealthCheck)))
+	router.Handle("GET /menu", middleware.Recover(http.HandlerFunc(handler.GetMenu)))
+	router.Handle("POST /menu", middleware.Recover(http.HandlerFunc(handler.PostMenu)))
+	router.Handle("GET /categories", middleware.Recover(http.HandlerFunc(handler.GetCategories)))
+	router.Handle("POST /categories", middleware.Recover(http.HandlerFunc(handler.PostCategory)))
+	router.Handle("GET /tags", middleware.Recover(http.HandlerFunc(handler.GetAllTags)))
+	router.Handle("POST /tags", middleware.Recover(http.HandlerFunc(handler.PostTag)))
+
 	addr := config.GetConfig().Host + ":" + fmt.Sprintf("%d", config.GetConfig().Port)
 	logger.Info("Server started on " + addr)
 	http.ListenAndServe(addr, router)

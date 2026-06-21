@@ -10,11 +10,11 @@ http:
     type: json
     data: |-
       {
-        "name": "another_one",
-        "description": "another boring item",
-        "is_vegetarian": false,
-        "available": false,
-        "category": "Indians"
+        "name": "chole bhature",
+        "description": "test good",
+        "is_vegetarian": true,
+        "available": true,
+        "category": "ok"
       }
   auth: inherit
 

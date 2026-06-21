@@ -1,0 +1,5 @@
+env_files = [".env"]
+
+[build]
+  cmd = "go build -o ./tmp/main ."
+  bin = "./tmp/main"

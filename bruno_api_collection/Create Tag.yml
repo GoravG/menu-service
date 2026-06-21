@@ -1,17 +1,17 @@
 info:
-  name: Create Category
+  name: Create Tag
   type: http
-  seq: 4
+  seq: 6
 
 http:
   method: POST
-  url: "{{base_url}}/categories"
+  url: "{{base_url}}/tags"
   body:
     type: json
     data: |-
       {
-        "name": "Punjabi",
-        "description": "Punjabi foods"
+        "name": "popular",
+        "description": "popular foods"
       }
   auth: inherit
 

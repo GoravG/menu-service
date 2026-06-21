@@ -3,38 +3,65 @@ package handlers
 import (
 	"net/http"
 	"restaurant-menu-api/internal/models"
-	"restaurant-menu-api/internal/services"
 	"restaurant-menu-api/internal/utils"
 )
 
-func GetMenu(w http.ResponseWriter, r *http.Request) {
-	menuItems := services.GetMenuItems()
+func (h *Handler) GetMenu(w http.ResponseWriter, r *http.Request) {
+	menuItems := h.service.GetMenuItems()
 	utils.CreateResponse(w, http.StatusOK, menuItems)
 }
 
-func PostMenu(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) PostMenu(w http.ResponseWriter, r *http.Request) {
 	var menuItem models.MenuItemRequest
 	err := utils.ParseRequestBody(r, &menuItem)
 	if err != nil {
 		utils.CreateResponse(w, http.StatusBadRequest, "Invalid request body")
 		return
 	}
-	services.CreateMenuItem(menuItem)
+	err = h.service.CreateMenuItem(menuItem)
+	if err != nil {
+		utils.CreateResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
 	utils.CreateResponse(w, http.StatusCreated, "Menu item created successfully")
 }
 
-func GetCategories(w http.ResponseWriter, r *http.Request) {
-	categories := services.GetAllCategories()
+func (h *Handler) GetCategories(w http.ResponseWriter, r *http.Request) {
+	categories := h.service.GetAllCategories()
 	utils.CreateResponse(w, http.StatusOK, categories)
 }
 
-func PostCategory(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) PostCategory(w http.ResponseWriter, r *http.Request) {
 	var category models.CategoryRequest
 	err := utils.ParseRequestBody(r, &category)
 	if err != nil {
 		utils.CreateResponse(w, http.StatusBadRequest, "Invalid request body")
 		return
 	}
-	services.CreateCategory(category)
+	err = h.service.CreateCategory(category)
+	if err != nil {
+		utils.CreateResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
 	utils.CreateResponse(w, http.StatusCreated, "Category created successfully")
+}
+
+func (h *Handler) GetAllTags(w http.ResponseWriter, r *http.Request) {
+	tags := h.service.GetAllTags()
+	utils.CreateResponse(w, http.StatusOK, tags)
+}
+
+func (h *Handler) PostTag(w http.ResponseWriter, r *http.Request) {
+	var tag models.TagRequest
+	err := utils.ParseRequestBody(r, &tag)
+	if err != nil {
+		utils.CreateResponse(w, http.StatusBadRequest, "Invalid request body")
+		return
+	}
+	err = h.service.CreateTag(tag)
+	if err != nil {
+		utils.CreateResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	utils.CreateResponse(w, http.StatusCreated, "Tag created successfully")
 }
