@@ -1,0 +1,22 @@
+info:
+  name: Create Category
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{base_url}}/categories"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Punjabi",
+        "description": "punjabi foods"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

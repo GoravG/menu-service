@@ -1,11 +1,11 @@
 info:
-  name: Create Menu
+  name: Get Categories
   type: http
-  seq: 2
+  seq: 3
 
 http:
-  method: POST
-  url: "{{base_url}}/menu"
+  method: GET
+  url: "{{base_url}}/categories"
   body:
     type: json
     data: |-
@@ -14,7 +14,7 @@ http:
         "description": "another boring item",
         "is_vegetarian": false,
         "available": false,
-        "category": "Indians"
+        "category": "yellow"
       }
   auth: inherit
 

@@ -16,6 +16,64 @@ var (
 	db   *sql.DB
 )
 
+func getMenuItemsTableQuery() string {
+	return `
+	CREATE TABLE IF NOT EXISTS menu_items (
+		name VARCHAR(255) NOT NULL,
+		description TEXT NOT NULL,
+		is_vegetarian BOOLEAN NOT NULL,
+		available BOOLEAN DEFAULT TRUE,
+		category VARCHAR(255) NOT NULL,
+		PRIMARY KEY (name),
+		FOREIGN KEY (category) REFERENCES categories(name)
+	)
+	`
+}
+
+func getTagsTableQuery() string {
+	return `
+	CREATE TABLE IF NOT EXISTS tags (
+		name VARCHAR(255) NOT NULL,
+		description TEXT NOT NULL,
+		PRIMARY KEY (name)
+	)
+	`
+}
+
+func getCategoriesTableQuery() string {
+	return `
+	CREATE TABLE IF NOT EXISTS categories (
+		name VARCHAR(255) NOT NULL,
+		description TEXT NOT NULL,
+		PRIMARY KEY (name)
+	)
+	`
+}
+
+func getMenuPriceListsTableQuery() string {
+	return `
+	CREATE TABLE IF NOT EXISTS menu_price_lists (
+		menu_item_name VARCHAR(255) NOT NULL,
+		price DECIMAL(10, 2) NOT NULL,
+		currency VARCHAR(3) NOT NULL,
+		portion_size VARCHAR(255) NOT NULL,
+		PRIMARY KEY (menu_item_name, portion_size),
+		FOREIGN KEY (menu_item_name) REFERENCES menu_items(name)
+	)
+	`
+}
+
+func getMenuTagsListTableQuery() string {
+	return `
+	CREATE TABLE IF NOT EXISTS menu_tags_list (
+		menu_item_name VARCHAR(255) NOT NULL,
+		tag VARCHAR(255) NOT NULL,
+		PRIMARY KEY (menu_item_name, tag),
+		FOREIGN KEY (menu_item_name) REFERENCES menu_items(name)
+	)
+	`
+}
+
 func InitializeDB() {
 	once.Do(func() {
 		logger.Info("Initializing database")
@@ -90,20 +148,52 @@ func MustBegin() *sql.Tx {
 
 func createTablesIfNotExists() {
 	logger.Info("Creating tables if not exists")
-	query := `
-	CREATE TABLE IF NOT EXISTS menu_items (
-		id INT AUTO_INCREMENT PRIMARY KEY,
-		name VARCHAR(255) NOT NULL,
-		description TEXT NOT NULL,
-		category VARCHAR(255) NOT NULL,
-		available BOOLEAN NOT NULL
-	)
-	`
+	createCategoryTableIfNotExists()
+	createTagsTableIfNotExists()
+	createMenuItemsTableIfNotExists()
+	createMenuPriceListsTableIfNotExists()
+	createMenuTagsListTableIfNotExists()
+	logger.Info("Tables created if not exists")
+}
+
+func createCategoryTableIfNotExists() {
+	query := getCategoriesTableQuery()
 	if _, err := db.Exec(query); err != nil {
-		logger.Error("Error creating tables: " + err.Error())
+		logger.Error("Error creating category table: " + err.Error())
 		panic(err)
 	}
-	logger.Info("Tables created if not exists")
+}
+
+func createTagsTableIfNotExists() {
+	query := getTagsTableQuery()
+	if _, err := db.Exec(query); err != nil {
+		logger.Error("Error creating tags table: " + err.Error())
+		panic(err)
+	}
+}
+
+func createMenuItemsTableIfNotExists() {
+	query := getMenuItemsTableQuery()
+	if _, err := db.Exec(query); err != nil {
+		logger.Error("Error creating menu items table: " + err.Error())
+		panic(err)
+	}
+}
+
+func createMenuPriceListsTableIfNotExists() {
+	query := getMenuPriceListsTableQuery()
+	if _, err := db.Exec(query); err != nil {
+		logger.Error("Error creating menu price lists table: " + err.Error())
+		panic(err)
+	}
+}
+
+func createMenuTagsListTableIfNotExists() {
+	query := getMenuTagsListTableQuery()
+	if _, err := db.Exec(query); err != nil {
+		logger.Error("Error creating menu tags list table: " + err.Error())
+		panic(err)
+	}
 }
 
 func Query(query string, args ...interface{}) (*sql.Rows, error) {

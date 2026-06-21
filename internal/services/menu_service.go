@@ -7,8 +7,8 @@ import (
 )
 
 func CreateMenuItem(menuItem models.MenuItemRequest) int64 {
-	query := "INSERT INTO menu_items (name, description, category, available) VALUES (?, ?, ?, ?)"
-	args := []interface{}{menuItem.Name, menuItem.Description, menuItem.Category, menuItem.Available}
+	query := "INSERT INTO menu_items (name, description, is_vegetarian, available, category) VALUES (?, ?, ?, ?, ?)"
+	args := []interface{}{menuItem.Name, menuItem.Description, menuItem.IsVegetarian, menuItem.Available, menuItem.Category}
 	rowsInserted, err := db.MustExecuteQuery(query, args...)
 	if err != nil {
 		logger.Error("Error creating menu item: " + err.Error())
@@ -28,7 +28,7 @@ func GetMenuItems() []models.MenuItem {
 	menuItems := []models.MenuItem{}
 	for rows.Next() {
 		menuItem := models.MenuItem{}
-		err = rows.Scan(&menuItem.ID, &menuItem.Name, &menuItem.Description, &menuItem.Category, &menuItem.Available)
+		err = rows.Scan(&menuItem.Name, &menuItem.Description, &menuItem.IsVegetarian, &menuItem.Available, &menuItem.Category)
 		if err != nil {
 			logger.Error("Error scanning rows: " + err.Error())
 			panic(err)
@@ -36,4 +36,36 @@ func GetMenuItems() []models.MenuItem {
 		menuItems = append(menuItems, menuItem)
 	}
 	return menuItems
+}
+
+func CreateCategory(category models.CategoryRequest) int64 {
+	query := "INSERT INTO categories (name, description) VALUES (?, ?)"
+	args := []interface{}{category.Name, category.Description}
+	rowsInserted, err := db.MustExecuteQuery(query, args...)
+	if err != nil {
+		logger.Error("Error creating category: " + err.Error())
+		panic(err)
+	}
+	return rowsInserted
+}
+
+func GetAllCategories() []models.Category {
+	query := "SELECT * FROM categories"
+	rows, err := db.Query(query)
+	if err != nil {
+		logger.Error("Error getting categories: " + err.Error())
+		panic(err)
+	}
+	defer rows.Close()
+	categories := []models.Category{}
+	for rows.Next() {
+		category := models.Category{}
+		err = rows.Scan(&category.Name, &category.Description)
+		if err != nil {
+			logger.Error("Error scanning rows: " + err.Error())
+			panic(err)
+		}
+		categories = append(categories, category)
+	}
+	return categories
 }
