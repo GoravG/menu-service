@@ -4,10 +4,7 @@ go 1.26.4
 
 tool github.com/air-verse/air
 
-require (
-	github.com/go-sql-driver/mysql v1.10.0
-	github.com/joho/godotenv v1.5.1
-)
+require github.com/go-sql-driver/mysql v1.10.0
 
 require (
 	dario.cat/mergo v1.0.2 // indirect
@@ -20,6 +17,7 @@ require (
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gohugoio/hugo v0.149.1 // indirect
+	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect

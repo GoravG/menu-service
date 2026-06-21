@@ -1,17 +1,18 @@
 package handlers
 
 import (
+	"database/sql"
 	"net/http"
-	"restaurant-menu-api/internal/db"
 	"restaurant-menu-api/internal/utils"
 	"strconv"
 )
 
-func HealthCheck(w http.ResponseWriter, r *http.Request) {
-	results := make(map[string]string)
-	results["in_use"] = strconv.Itoa(db.GetDB().Stats().InUse)
-	results["idle"] = strconv.Itoa(db.GetDB().Stats().Idle)
-	results["open_connections"] = strconv.Itoa(db.GetDB().Stats().OpenConnections)
-	w.WriteHeader(http.StatusOK)
-	utils.CreateResponse(w, http.StatusOK, results)
+func HealthCheck(database *sql.DB) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		results := make(map[string]string)
+		results["in_use"] = strconv.Itoa(database.Stats().InUse)
+		results["idle"] = strconv.Itoa(database.Stats().Idle)
+		results["open_connections"] = strconv.Itoa(database.Stats().OpenConnections)
+		utils.CreateResponse(w, http.StatusOK, results)
+	})
 }

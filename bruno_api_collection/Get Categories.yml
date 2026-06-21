@@ -6,16 +6,6 @@ info:
 http:
   method: GET
   url: "{{base_url}}/categories"
-  body:
-    type: json
-    data: |-
-      {
-        "name": "another_one",
-        "description": "another boring item",
-        "is_vegetarian": false,
-        "available": false,
-        "category": "yellow"
-      }
   auth: inherit
 
 settings:

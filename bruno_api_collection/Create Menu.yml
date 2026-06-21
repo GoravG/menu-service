@@ -14,7 +14,7 @@ http:
         "description": "test good",
         "is_vegetarian": true,
         "available": true,
-        "category": "ok"
+        "category": "Punjabi"
       }
   auth: inherit
 

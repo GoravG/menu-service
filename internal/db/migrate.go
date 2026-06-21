@@ -1,18 +1,21 @@
 package db
 
-import "restaurant-menu-api/internal/logger"
+import (
+	"database/sql"
+	"restaurant-menu-api/internal/logger"
+)
 
-func createTablesIfNotExists() {
+func CreateTablesIfNotExists(database *sql.DB) {
 	logger.Info("Creating tables if not exists")
-	createCategoryTableIfNotExists()
-	createTagsTableIfNotExists()
-	createMenuItemsTableIfNotExists()
-	createMenuPriceListsTableIfNotExists()
-	createMenuTagsListTableIfNotExists()
+	createCategoryTableIfNotExists(database)
+	createTagsTableIfNotExists(database)
+	createMenuItemsTableIfNotExists(database)
+	createMenuPriceListsTableIfNotExists(database)
+	createMenuTagsListTableIfNotExists(database)
 	logger.Info("Tables created if not exists")
 }
 
-func createCategoryTableIfNotExists() {
+func createCategoryTableIfNotExists(database *sql.DB) {
 	query := `
 	CREATE TABLE IF NOT EXISTS categories (
 		name VARCHAR(255) NOT NULL,
@@ -20,13 +23,13 @@ func createCategoryTableIfNotExists() {
 		PRIMARY KEY (name)
 	)
 	`
-	if _, err := db.Exec(query); err != nil {
+	if _, err := database.Exec(query); err != nil {
 		logger.Error("Error creating category table: " + err.Error())
 		panic(err)
 	}
 }
 
-func createTagsTableIfNotExists() {
+func createTagsTableIfNotExists(database *sql.DB) {
 	query := `
 	CREATE TABLE IF NOT EXISTS tags (
 		name VARCHAR(255) NOT NULL,
@@ -34,13 +37,13 @@ func createTagsTableIfNotExists() {
 		PRIMARY KEY (name)
 	)
 	`
-	if _, err := db.Exec(query); err != nil {
+	if _, err := database.Exec(query); err != nil {
 		logger.Error("Error creating tags table: " + err.Error())
 		panic(err)
 	}
 }
 
-func createMenuItemsTableIfNotExists() {
+func createMenuItemsTableIfNotExists(database *sql.DB) {
 	query := `
 	CREATE TABLE IF NOT EXISTS menu_items (
 		name VARCHAR(255) NOT NULL,
@@ -52,13 +55,13 @@ func createMenuItemsTableIfNotExists() {
 		FOREIGN KEY (category) REFERENCES categories(name)
 	)
 	`
-	if _, err := db.Exec(query); err != nil {
+	if _, err := database.Exec(query); err != nil {
 		logger.Error("Error creating menu items table: " + err.Error())
 		panic(err)
 	}
 }
 
-func createMenuPriceListsTableIfNotExists() {
+func createMenuPriceListsTableIfNotExists(database *sql.DB) {
 	query := `
 	CREATE TABLE IF NOT EXISTS menu_price_lists (
 		menu_item_name VARCHAR(255) NOT NULL,
@@ -69,13 +72,13 @@ func createMenuPriceListsTableIfNotExists() {
 		FOREIGN KEY (menu_item_name) REFERENCES menu_items(name)
 	)
 	`
-	if _, err := db.Exec(query); err != nil {
+	if _, err := database.Exec(query); err != nil {
 		logger.Error("Error creating menu price lists table: " + err.Error())
 		panic(err)
 	}
 }
 
-func createMenuTagsListTableIfNotExists() {
+func createMenuTagsListTableIfNotExists(database *sql.DB) {
 	query := `
 	CREATE TABLE IF NOT EXISTS menu_tags_list (
 		menu_item_name VARCHAR(255) NOT NULL,
@@ -84,7 +87,7 @@ func createMenuTagsListTableIfNotExists() {
 		FOREIGN KEY (menu_item_name) REFERENCES menu_items(name)
 	)
 	`
-	if _, err := db.Exec(query); err != nil {
+	if _, err := database.Exec(query); err != nil {
 		logger.Error("Error creating menu tags list table: " + err.Error())
 		panic(err)
 	}

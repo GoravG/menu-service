@@ -44,7 +44,7 @@ func InitializeDB() {
 		}
 		logger.Info("Database pinged")
 
-		createTablesIfNotExists()
+		CreateTablesIfNotExists(db)
 		logger.Info("Database initialized")
 	})
 }
