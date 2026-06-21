@@ -10,9 +10,9 @@ http:
     type: json
     data: |-
       {
-        "price": 200,
+        "price": 100,
         "currency": "INR",
-        "portion_size": "Full",
+        "portion_size": "Half",
         "menu_item_name": "chole bhature"
       }
   auth: inherit

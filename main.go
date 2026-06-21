@@ -30,6 +30,7 @@ func main() {
 	router.Handle("POST /tags", middleware.Recover(http.HandlerFunc(handler.PostTag)))
 	router.Handle("GET /menu-price", middleware.Recover(http.HandlerFunc(handler.GetMenuPrice)))
 	router.Handle("POST /menu-price", middleware.Recover(http.HandlerFunc(handler.PostMenuPrice)))
+	router.Handle("GET /menu-card", middleware.Recover(http.HandlerFunc(handler.GetMenuCard)))
 
 	addr := config.GetConfig().Host + ":" + fmt.Sprintf("%d", config.GetConfig().Port)
 	logger.Info("Server started on " + addr)

@@ -11,6 +11,7 @@ type Service struct {
 	menus      *repository.MenuRepository
 	tags       *repository.TagRepository
 	menuPrices *repository.MenuPriceRepository
+	menuCard   *repository.MenuCardRepository
 }
 
 func New(db *sql.DB) (*Service, error) {
@@ -34,11 +35,17 @@ func New(db *sql.DB) (*Service, error) {
 		return nil, err
 	}
 
+	menuCard, err := repository.NewMenuCardRepository(db)
+	if err != nil {
+		return nil, err
+	}
+
 	return &Service{
 		categories: categories,
 		menus:      menus,
 		tags:       tags,
 		menuPrices: menuPrices,
+		menuCard:   menuCard,
 	}, nil
 }
 

@@ -1,0 +1,18 @@
+info:
+  name: Get Menu Card
+  type: http
+  seq: 10
+
+http:
+  method: GET
+  url: "{{base_url}}/menu-card"
+  body:
+    type: json
+    data: ""
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -85,3 +85,12 @@ func (h *Handler) PostMenuPrice(w http.ResponseWriter, r *http.Request) {
 	}
 	utils.CreateResponse(w, http.StatusCreated, "Menu price created successfully")
 }
+
+func (h *Handler) GetMenuCard(w http.ResponseWriter, r *http.Request) {
+	menuCardItems, err := h.service.GetMenuCard()
+	if err != nil {
+		utils.CreateResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	utils.CreateResponse(w, http.StatusOK, menuCardItems)
+}
