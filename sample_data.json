@@ -1,0 +1,207 @@
+{
+    "data": [
+      {
+        "menu_item_name": "Chocolate Cupcake",
+        "description": "Moist chocolate cupcake with creamy chocolate buttercream frosting",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Cupcakes",
+        "prices": [
+          { "price": 60, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Vanilla Cupcake",
+        "description": "Classic vanilla cupcake topped with fluffy vanilla cream frosting",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Cupcakes",
+        "prices": [
+          { "price": 55, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Red Velvet Cupcake",
+        "description": "Soft red velvet cupcake with a swirl of cream cheese frosting on top",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Cupcakes",
+        "prices": [
+          { "price": 70, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Chocolate Brownie",
+        "description": "Dense and fudgy chocolate brownie with a gooey centre",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Brownies",
+        "prices": [
+          { "price": 80, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Walnut Brownie",
+        "description": "Rich chocolate brownie loaded with crunchy walnut bits",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Brownies",
+        "prices": [
+          { "price": 90, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Blueberry Muffin",
+        "description": "Fluffy muffin bursting with fresh blueberries and a golden sugary top",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Muffins",
+        "prices": [
+          { "price": 70, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Chocolate Chip Muffin",
+        "description": "Soft vanilla muffin packed with semi-sweet chocolate chips throughout",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Muffins",
+        "prices": [
+          { "price": 65, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Butter Croissant",
+        "description": "Flaky, golden croissant made with layers of buttery dough",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Pastries",
+        "prices": [
+          { "price": 75, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Chocolate Éclair",
+        "description": "Light choux pastry filled with vanilla cream and topped with chocolate glaze",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Pastries",
+        "prices": [
+          { "price": 85, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Choco Chip Cookie",
+        "description": "Crispy on the edges, chewy in the middle, loaded with chocolate chips",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Cookies",
+        "prices": [
+          { "price": 30, "currency": "INR", "portion_size": "1 Piece" },
+          { "price": 160, "currency": "INR", "portion_size": "6 Pieces" }
+        ]
+      },
+      {
+        "menu_item_name": "Butter Cookies",
+        "description": "Melt-in-the-mouth shortbread-style butter cookies with a light vanilla aroma",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Cookies",
+        "prices": [
+          { "price": 25, "currency": "INR", "portion_size": "1 Piece" },
+          { "price": 130, "currency": "INR", "portion_size": "6 Pieces" }
+        ]
+      },
+      {
+        "menu_item_name": "Cinnamon Roll",
+        "description": "Warm, soft roll swirled with cinnamon sugar and drizzled with vanilla glaze",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Pastries",
+        "prices": [
+          { "price": 100, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Chocolate Cake Slice",
+        "description": "A generous slice of moist chocolate sponge with chocolate ganache frosting",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Cake Slices",
+        "prices": [
+          { "price": 120, "currency": "INR", "portion_size": "1 Slice" }
+        ]
+      },
+      {
+        "menu_item_name": "Black Forest Cake Slice",
+        "description": "Chocolate sponge layered with whipped cream and cherries, classic Black Forest style",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Cake Slices",
+        "prices": [
+          { "price": 130, "currency": "INR", "portion_size": "1 Slice" }
+        ]
+      },
+      {
+        "menu_item_name": "Strawberry Pastry",
+        "description": "Light vanilla sponge slice topped with whipped cream and fresh strawberries",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Cake Slices",
+        "prices": [
+          { "price": 110, "currency": "INR", "portion_size": "1 Slice" }
+        ]
+      },
+      {
+        "menu_item_name": "Cream Puff",
+        "description": "Airy choux pastry ball filled with lightly sweetened whipped cream",
+        "available": false,
+        "is_vegetarian": true,
+        "category": "Pastries",
+        "prices": [
+          { "price": 60, "currency": "INR", "portion_size": "1 Piece" }
+        ]
+      },
+      {
+        "menu_item_name": "Macarons",
+        "description": "Delicate French almond shells with a smooth buttercream filling, assorted flavours",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "French Bites",
+        "prices": [
+          { "price": 80, "currency": "INR", "portion_size": "1 Piece" },
+          { "price": 220, "currency": "INR", "portion_size": "3 Pieces" }
+        ]
+      },
+      {
+        "menu_item_name": "Hot Chocolate",
+        "description": "Thick and creamy hot cocoa made with real chocolate, topped with whipped cream",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Beverages",
+        "prices": [
+          { "price": 120, "currency": "INR", "portion_size": "Regular" }
+        ]
+      },
+      {
+        "menu_item_name": "Cold Coffee",
+        "description": "Chilled blended coffee with milk and a hint of chocolate, served with ice",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Beverages",
+        "prices": [
+          { "price": 130, "currency": "INR", "portion_size": "Regular" }
+        ]
+      },
+      {
+        "menu_item_name": "Strawberry Milkshake",
+        "description": "Thick and creamy milkshake blended with fresh strawberries and chilled milk",
+        "available": true,
+        "is_vegetarian": true,
+        "category": "Beverages",
+        "prices": [
+          { "price": 140, "currency": "INR", "portion_size": "Regular" }
+        ]
+      }
+    ]
+  }
